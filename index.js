@@ -193,7 +193,7 @@ const VueBarcodeScanner = {
         return handleControlBoundaryKeydown()
       }
 
-      if (checkInputElapsedTime(Date.now())) {
+      if (checkInputElapsedTime(Date.now(), event)) {
         if (!attributes.isProcessing) {
           emitEvent("start", event)
           attributes.isProcessing = true
@@ -231,7 +231,7 @@ const VueBarcodeScanner = {
     }
 
     // check whether the keystrokes are considered as scanner or human
-    function checkInputElapsedTime (timestamp) {
+    function checkInputElapsedTime (timestamp, event) {
       // push current timestamp to the register
       attributes.pressedTime.push(timestamp)
       // when register is full (ready to compare)
